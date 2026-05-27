@@ -1,0 +1,437 @@
+/* Variables de color (Como constantes en C) */
+:root {
+    --color-fondo: #ffffff;
+    --color-texto: #111111;
+    --color-gris-claro: #f4f4f4;
+    --color-gris-oscuro: #666666;
+    --color-detalle: #00ff66; /* Un verde neón sutil para el tag */
+    --fuente-principal: 'Space Grotesk', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+    font-family: var(--fuente-principal);
+    padding-top: 80px; /* Espacio para que el header fijo no tape contenido */
+}
+
+/* HEADER */
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(235, 234, 234, 0.95);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 5%;
+    border-bottom: 1px solid var(--color-gris-claro);
+    z-index: 1000;
+}
+
+.logo img {
+    height: 55px; /* Ajusta este número (en píxeles) según qué tan grande quieras que se vea */
+    width: auto;  /* Mantiene la proporción original de tu logo para que no se estire */
+    display: block;
+}
+
+
+header nav a {
+    text-decoration: none;
+    color: var(--color-texto);
+    margin-left: 20px;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+}
+
+/* FILTROS */
+.filtros {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 30px 5%;
+    flex-wrap: wrap;
+}
+
+.btn-filtro {
+    background: none;
+    border: 1px solid var(--color-texto);
+    padding: 8px 16px;
+    font-family: var(--fuente-principal);
+    cursor: pointer;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    transition: all 0.3s ease;
+}
+
+.btn-filtro.activo, .btn-filtro:hover {
+    background-color: var(--color-texto);
+    color: var(--color-fondo);
+}
+
+/* CONTENEDOR DE PRODUCTOS (GRILLA) */
+.contenedor-productos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    padding: 0 5% 50px 5%;
+}
+
+/* TARJETA DE PRODUCTO */
+.tarjeta-producto {
+    background: var(--color-fondo);
+    border: 1px solid var(--color-gris-claro);
+    display: flex;
+    flex-direction: column;
+}
+
+.imagen-contenedor {
+    position: relative;
+    background-color: var(--color-gris-claro);
+    aspect-ratio: 3 / 4; /* Proporción ideal para fotos de ropa */
+    overflow: hidden;
+}
+
+.imagen-contenedor img {
+    width: 100%;
+    height: 100%;
+    /* CAMBIO CLAVE: Usa 'contain' en lugar de 'cover' si tus fotos ya tienen fondo propio, 
+       o mantén 'cover' pero asegurando suficiente espacio alrededor del producto */
+    object-fit: contain; 
+    padding: 15px; /* Le da un "respiro" al producto para que no toque los bordes */
+    background-color: #f9f9f9; /* Unifica el fondo del contenedor (puedes cambiarlo a blanco #fff si prefieres) */
+    transition: transform 0.5s ease;
+}
+
+.tarjeta-producto:hover img {
+    transform: scale(1.05); /* Efecto zoom urbano al pasar el mouse */
+}
+
+.tag-personalizable {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: var(--color-texto);
+    color: var(--color-detalle);
+    padding: 4px 8px;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.info-producto {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.info-producto h3 {
+    font-size: 1.1rem;
+    font-weight: 400;
+}
+
+.precio {
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+
+/* selectores de talla y diseño */
+.opciones-personalizacion {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin: 10px 0;
+}
+
+.opciones-personalizacion label {
+    font-size: 0.75rem;
+    color: var(--color-gris-oscuro);
+    text-transform: uppercase;
+}
+
+.opciones-personalizacion select {
+    padding: 8px;
+    font-family: var(--fuente-principal);
+    border: 1px solid var(--color-gris-claro);
+    background: var(--color-fondo);
+    outline: none;
+    margin-bottom: 5px;
+}
+
+/* BOTÓN BASE */
+.btn-whatsapp {
+    display: block;
+    text-align: center;
+    background-color: var(--color-texto); /* Negro */
+    color: var(--color-fondo); /* Blanco */
+    text-decoration: none;
+    padding: 12px;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-top: auto;
+    border: 1px solid var(--color-texto);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); /* Transición suave urbana */
+}
+
+/* EFECTO HOVER: Intercambio de colores minimalista con borde */
+.btn-whatsapp:hover {
+    background-color: var(--color-fondo); /* Se vuelve blanco */
+    color: var(--color-texto); /* El texto se vuelve negro */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Sombra sutil de elevación */
+    transform: translateY(-2px); /* Sutil brinco hacia arriba */
+}
+
+/* Efecto cuando se presiona (Active) */
+.btn-whatsapp:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+/* Efecto cuando se presiona (Active) */
+.btn-whatsapp:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+/* FOOTER */
+footer {
+    background-color: var(--color-gris-claro);
+    padding: 50px 5%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+footer h2 {
+    letter-spacing: 2px;
+}
+
+.redes a {
+    color: var(--color-texto);
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px; /* Separa el icono del texto de forma exacta */
+    font-size: 0.95rem;
+    transition: color 0.3s ease;
+}
+
+/* Efecto hover urbano para las redes */
+.redes a:hover {
+    color: #00ff66; /* Cambia al verde neón cuando pasas el mouse, o el color que prefieras */
+}
+
+.redes i {
+    font-size: 1.2rem; /* Hace el icono un pelín más grande que el texto para que resalte */
+}
+
+.creditos {
+    font-size: 0.8rem;
+    color: var(--color-gris-oscuro);
+    margin-top: 20px;
+}
+
+/* VENTANA MODAL BASE */
+.modal {
+    display: none; /* Oculto por defecto */
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(5px); /* Efecto difuminado urbano */
+    z-index: 2000;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.modal-contenido {
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+    padding: 30px;
+    width: 100%;
+    max-width: 850px;
+    border: 1px solid var(--color-texto);
+    position: relative;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.cerrar-modal {
+    position: absolute;
+    top: 15px; right: 20px;
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+/* ESTRUCTURA INTERNA DEL MODAL */
+.modal-estructura {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+    .modal-estructura { grid-template-columns: 1fr; }
+}
+
+.modal-opcion {
+    margin-bottom: 20px;
+}
+
+.modal-opcion label {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    color: var(--color-gris-oscuro);
+    display: block;
+    margin-bottom: 8px;
+}
+
+/* GRILLA DE FOTOS DE DISEÑOS */
+.grilla-disenos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+    gap: 10px;
+    max-height: 300px;
+    overflow-y: auto;
+    border: 1px solid var(--color-gris-claro);
+    padding: 10px;
+}
+
+.item-diseno {
+    border: 2px solid transparent;
+    cursor: pointer;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    background-color: var(--color-gris-claro);
+}
+
+.item-diseno img {
+    width: 100%; height: 100%; object-fit: cover;
+}
+
+.item-diseno.seleccionado {
+    border-color: var(--color-texto);
+}
+
+/* SELECTOR DE COLORES (CÍRCULOS) */
+.contenedor-colores {
+    display: flex;
+    gap: 10px;
+}
+
+.circulo-color {
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    border: 2px solid var(--color-gris-claro);
+    cursor: pointer;
+    position: relative;
+}
+
+.circulo-color.seleccionado {
+    border-color: var(--color-texto);
+    transform: scale(1.1);
+}
+
+.resumen-seleccion {
+    background-color: var(--color-gris-claro);
+    padding: 15px;
+    margin-bottom: 20px;
+    font-size: 0.85rem;
+}
+
+/* PANEL LATERAL DEL CARRITO */
+.sidebar-carrito {
+    position: fixed;
+    top: 0; right: -350px; /* Oculto por defecto a la derecha */
+    width: 320px; height: 100%;
+    background-color: var(--color-fondo);
+    border-left: 1px solid var(--color-texto);
+    z-index: 3000;
+    display: flex;
+    flex-direction: column;
+    transition: right 0.4s ease; /* Efecto deslizante suave */
+    box-shadow: -5px 0 15px rgba(0,0,0,0.05);
+}
+
+/* Clase que JS activará para mostrar el carrito */
+.sidebar-carrito.abierto {
+    right: 0;
+}
+
+.carrito-header {
+    padding: 20px;
+    border-bottom: 1px solid var(--color-gris-claro);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cerrar-carrito {
+    font-size: 1.5rem; cursor: pointer;
+}
+
+.lista-items-carrito {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+}
+
+/* TARJETA DE CADA PRODUCTO DENTRO DEL CARRITO */
+.item-en-carrito {
+    display: flex;
+    gap: 15px;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid var(--color-gris-claro);
+    align-items: center;
+}
+
+.item-en-carrito img {
+    width: 60px; height: 60px; object-fit: cover;
+    background-color: var(--color-gris-claro);
+}
+
+.item-carrito-info {
+    flex: 1;
+}
+
+.item-carrito-info h4 {
+    font-size: 0.9rem; font-weight: 400; margin-bottom: 3px;
+}
+
+.item-carrito-info p {
+    font-size: 0.75rem; color: var(--color-gris-oscuro);
+    margin: 2px 0;
+}
+
+.btn-eliminar-item {
+    background: none; border: none; color: red;
+    cursor: pointer; font-size: 0.9rem; padding: 5px;
+}
+
+.carrito-footer {
+    padding: 20px;
+    border-top: 1px solid var(--color-gris-claro);
+    background-color: var(--color-gris-claro);
+}
+
+.total-contenedor {
+    display: flex; justify-content: space-between;
+    margin-bottom: 15px; font-weight: bold;
+}

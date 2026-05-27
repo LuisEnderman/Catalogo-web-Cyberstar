@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyber Star | Catálogo</title>
+    <!-- Importamos una fuente tipográfica urbana y limpia -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+    <!-- ENCABEZADO / NAVBAR -->
+    <header>
+        <div class="logo">
+            <a href="index.html" style="display: block; text-decoration: none;">
+                <img src="Recursos/logo.png" alt="Cyber Star Logo">
+            </a>
+        </div>
+        <nav>
+            <a href="#catalogo">Catálogo</a>
+            <a href="#contacto">Contacto</a>
+            <button id="btn-abrir-carrito" onclick="toggleCarrito()" style="background:none; border:none; cursor:pointer; font-size:1.2rem; color:var(--color-texto); position:relative; margin-left:20px;">
+                <i class="fas fa-shopping-cart"></i>
+                <span id="contador-carrito" style="position:absolute; top:-8px; right:-10px; background:red; color:white; border-radius:50%; padding:2px 6px; font-size:0.7rem; font-weight:bold;">0</span>
+            </button>
+        </nav>
+    </header>
+
+    <!-- FILTROS DE CATEGORÍA -->
+    <section class="filtros">
+        <button class="btn-filtro activo">Todos</button>
+        <button class="btn-filtro">Streetwear</button>
+        <button class="btn-filtro">Tazas</button>
+        <button class="btn-filtro">Termos</button>
+        <button class="btn-filtro">Accesorios</button>
+    </section>
+
+    <!-- GRILLA DE PRODUCTOS (El script de JS llenará este contenedor automáticamente) -->
+    <main id="catalogo" class="contenedor-productos">
+        <!-- Las tarjetas de tus productos aparecerán aquí de forma mágica -->
+    </main>
+
+    <!-- SECCIÓN DE CONTACTO -->
+    <footer id="contacto">
+        <h2>CYBER STAR</h2>
+        <p>Estética urbana y sublimación personalizada.</p>
+        <div class="redes">
+            <a href="https://www.instagram.com/cyberstar.y2k?igsh=a3hoYjJmd2tlcHcy" target="_blank">
+                <i class="fab fa-instagram"></i> Instagram
+            </a>
+            <a href="https://wa.me/584125129119" target="_blank">
+                <i class="fab fa-whatsapp"></i> WhatsApp
+            </a>
+        </div>
+        <p class="creditos">© 2026 Cyber Star. Todos los derechos reservados.</p>
+    </footer>
+
+    <div id="modal-personalizar" class="modal">
+        <div class="modal-contenido">
+            <span class="cerrar-modal" onclick="cerrarModal()">&times;</span>
+            
+            <div class="modal-estructura">
+                <div class="modal-izq">
+                    <h3>Selecciona un Diseño</h3>
+                    <div id="galeria-disenos" class="grilla-disenos"></div>
+                </div>
+                
+                <div class="modal-der">
+                    <h2 id="modal-producto-nombre">Nombre del Producto</h2>
+                    <p id="modal-producto-precio" class="precio">$0.00</p>
+                    
+                    <div class="modal-opcion">
+                        <label>Color de la prenda:</label>
+                        <div id="selector-colores" class="contenedor-colores"></div>
+                    </div>
+
+                    <div class="modal-opcion" id="contenedor-tallas-modal">
+                        </div>
+
+                    <div class="resumen-seleccion">
+                        <p><strong>Diseño:</strong> <span id="resumen-diseno">Ninguno seleccionado</span></p>
+                        <p><strong>Color:</strong> <span id="resumen-color">Ninguno seleccionado</span></p>
+                    </div>
+
+                    <button id="btn-confirmar-pedido" class="btn-whatsapp">
+                        Confirmar y pedir por WhatsApp
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="panel-carrito" class="sidebar-carrito">
+        <div class="carrito-header">
+            <h3>Tu Pedido</h3>
+            <span class="cerrar-carrito" onclick="toggleCarrito()">&times;</span>
+        </div>
+        
+        <div id="items-carrito" class="lista-items-carrito"></div>
+        
+        <div class="carrito-footer">
+            <div class="total-contenedor">
+                <span>Total estimado:</span>
+                <span id="total-carrito" class="precio">$0.00</span>
+            </div>
+            <button onclick="enviarCarritoWhatsApp()" class="btn-whatsapp" style="width:100%; border:none; cursor:pointer;">
+                <i class="fab fa-whatsapp"></i> Enviar Pedido Completo
+            </button>
+        </div>
+    </div>
+    
+    <!-- SECCIÓN ADMINISTRADOR: GENERADOR DE PRODUCTOS (SOLO PARA TI) -->
+    <section id="panel-admin" style="display: none; background: #111; color: #fff; padding: 40px 20px; border-top: 2px dashed #333; margin-top: 60px;">
+        <div style="max-width: 600px; margin: 0 auto; font-family: sans-serif;">
+            <h3 style="text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px; color: #00ff66;">⚡ Cyber Star - Generador de Productos</h3>
+            <p style="font-size: 0.85rem; color: #888; margin-bottom: 20px;">Llena los campos para generar el código estructurado sin errores de llaves.</p>
+            
+            <form id="form-generador" onsubmit="generarCodigoProducto(event)" style="display: flex; flex-direction: column; gap: 15px;">
+                <div>
+                    <label style="display:block; font-size: 0.8rem; margin-bottom: 5px;">Nombre del Producto:</label>
+                    <input type="text" id="admin-nombre" placeholder="Ej: Franela Cyber Skull" required style="width:100%; padding:10px; background:#222; border:1px solid #444; color:#fff;">
+                </div>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                    <div>
+                        <label style="display:block; font-size: 0.8rem; margin-bottom: 5px;">Precio ($):</label>
+                        <input type="number" id="admin-precio" step="0.01" placeholder="14.00" required style="width:100%; padding:10px; background:#222; border:1px solid #444; color:#fff;">
+                    </div>
+                    <div>
+                        <label style="display:block; font-size: 0.8rem; margin-bottom: 5px;">Categoría:</label>
+                        <select id="admin-categoria" style="width:100%; padding:10px; background:#222; border:1px solid #444; color:#fff;">
+                            <option value="streetwear">Streetwear</option>
+                            <option value="tazas">Tazas</option>
+                            <option value="termos">Termos</option>
+                            <option value="accesorios">Accesorios</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                    <div>
+                        <label style="display:block; font-size: 0.8rem; margin-bottom: 5px;">Tipo de Especificación:</label>
+                        <select id="admin-tipo-espec" style="width:100%; padding:10px; background:#222; border:1px solid #444; color:#fff;">
+                            <option value="Talla">Talla (Franelas)</option>
+                            <option value="Forma">Forma (Mousepads, Llaveros)</option>
+                            <option value="">Ninguna (Tazas normales)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label style="display:block; font-size: 0.8rem; margin-bottom: 5px;">Opciones (Separadas por coma):</label>
+                        <input type="text" id="admin-valores-espec" placeholder="S, M, L o Circular, Rectangular" style="width:100%; padding:10px; background:#222; border:1px solid #444; color:#fff;">
+                    </div>
+                </div>
+
+                <div>
+                    <label style="display:block; font-size: 0.8rem; margin-bottom: 5px;">Ruta de la Imagen Principal:</label>
+                    <input type="text" id="admin-imagen" placeholder="imagenes/franela-negra.jpg" required style="width:100%; padding:10px; background:#222; border:1px solid #444; color:#fff;">
+                </div>
+
+                <div>
+                    <label style="display:block; font-size: 0.8rem; margin-bottom: 5px;">Diseños en Stock (Nombre y foto separados por dos puntos, uno por línea):</label>
+                    <textarea id="admin-disenos" rows="3" placeholder="Cyber Skull:imagenes/diseno1.jpg&#10;Retro Mecha:imagenes/diseno2.jpg" style="width:100%; padding:10px; background:#222; border:1px solid #444; color:#fff; font-family:monospace; font-size:0.8rem;"></textarea>
+                </div>
+
+                <button type="submit" style="background:#00ff66; color:#111; border:none; padding:12px; font-weight:bold; cursor:pointer; text-transform:uppercase;">Generar Código Estructurado</button>
+            </form>
+
+            <!-- CAJA DONDE APARECERÁ EL CÓDIGO LISTO -->
+            <div id="contenedor-resultado-admin" style="display:none; margin-top: 25px;">
+                <label style="display:block; font-size: 0.8rem; margin-bottom: 5px; color:#00ff66;">📋 Código generado con éxito. ¡Copia esto y pégalo en tu script.js!:</label>
+                <textarea id="output-codigo" readonly rows="8" style="width:100%; padding:10px; background:#000; border:1px solid #00ff66; color:#00ff66; font-family:monospace; font-size:0.8rem;"></textarea>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
