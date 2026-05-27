@@ -5,7 +5,7 @@ const productos = [
         nombre: "Franela Oversize",
         precio: 14.00,
         categoria: "streetwear",
-        imagen: "Recursos/franelas/oversize-1.png",
+        imagen: "Recursos/Franelas/Oversize-1.png",
         personalizable: false,
         tipoEspecificacion: "tallas",
         tallas: ["S", "M", "L", "XL"],
@@ -17,9 +17,9 @@ const productos = [
         ],
         // Fotos reales de tus diseños de sublimación/estampado
         disenos: [
-            { nombre: "Cyber pool", img: "Recursos/franelas/oversize-pool.webp" },
-            { nombre: "Como antes, como siempre, como nunca", img: "Recursos/franelas/akapellah.webp" },
-            { nombre: "Money for peace", img: "Recursos/franelas/oversize-1.png" }
+            { nombre: "Cyber pool", img: "Recursos/Franelas/oversize-pool.webp" },
+            { nombre: "Como antes, como siempre, como nunca", img: "Recursos/Franelas/akapellah.webp" },
+            { nombre: "Money for peace", img: "Recursos/Franelas/oversize-1.png" }
         ]
     },
     {
@@ -27,7 +27,7 @@ const productos = [
         nombre: "Franela Personalizada",
         precio: 14.00,
         categoria: "streetwear",
-        imagen: "Recursos/franelas/oversize.webp",
+        imagen: "Recursos/Franelas/oversize.webp",
         personalizable: true,
         tipoEspecificacion: "tallas",
         tallas: ["S", "M", "L", "XL"],
@@ -39,7 +39,7 @@ const productos = [
         ],
         // Fotos reales de tus diseños de sublimación/estampado
         disenos: [
-            { nombre: "Personalizada a tu gusto", img: "Recursos/franelas/oversize-pool.webp" },
+            { nombre: "Personalizada a tu gusto", img: "Recursos/Franelas/oversize-pool.webp" },
         ]
     },
     {
@@ -47,14 +47,14 @@ const productos = [
         nombre: "Taza Cerámica Blanca",
         precio: 6.00,
         categoria: "tazas",
-        imagen: "Recursos/tazas/taza-blanca.png",
+        imagen: "Recursos/Tazas/taza-blanca.png",
         personalizable: true,
         tipoEspecificacion: "tallas",
         tallas: [],
         colores: [{ nombre: "Blanco", hex: "#ffffff" }],
         disenos: [
-            { nombre: "Pixel Art", img: "Recursos/tazas/diseno1.jpg" },
-            { nombre: "Code Coffee", img: "Recursos/tazas/diseno4.jpg" }
+            { nombre: "Pixel Art", img: "Recursos/Tazas/diseno1.jpg" },
+            { nombre: "Code Coffee", img: "Recursos/Tazas/diseno4.jpg" }
         ]
     },
      {
@@ -62,14 +62,14 @@ const productos = [
         nombre: "Llavero Metálico",
         precio: 3.50,
         categoria: "accesorios",
-        imagen: "Recursos/accesorios/llavero-metalico-circular.png",
+        imagen: "Recursos/Accesorios/llavero-metalico-circular.png",
         personalizable: true,
         tipoEspecificacion: "Forma", // <-- Volvemos a usar "Forma"
         tallas: ["Chapa Militar", "Rectangulo", "Circular"], // <-- Sus formas disponibles
         colores: [{ nombre: "Blanco", hex: "#ffffff" },
                 { nombre: "plata", hex: "#C0C0C0" }],
         disenos: [
-            { nombre: "Personalizado", img: "Recursos/accesorios/llavero-metalico-rectangulo.png" },
+            { nombre: "Personalizado", img: "Recursos/Accesorios/llavero-metalico-rectangulo.png" },
         ]
     },
     {
@@ -77,13 +77,13 @@ const productos = [
         nombre: "Mousepad",
         precio: 3.50,
         categoria: "accesorios",
-        imagen: "Recursos/accesorios/mousepad.png",
+        imagen: "Recursos/Accesorios/mousepad.png",
         personalizable: true,
         tipoEspecificacion: "Forma", // <-- Aquí le decimos qué palabra usar
         tallas: ["Rectangular", "Circular"], // <-- Aquí metemos las formas
         colores: [{ nombre: "Negro", hex: "#111111" }],
         disenos: [
-            { nombre: "Vector Cyberpunk", img: "Recursos/accesorios/diseno1.jpg" }
+            { nombre: "Vector Cyberpunk", img: "Recursos/Accesorios/diseno1.jpg" }
         ]
     },
     {
@@ -91,13 +91,13 @@ const productos = [
         nombre: "Llavero MDF",
         precio: 3.50,
         categoria: "accesorios",
-        imagen: "Recursos/accesorios/llavero-mdf.webp",
+        imagen: "Recursos/Accesorios/llavero-mdf.webp",
         personalizable: true,
         tipoEspecificacion: "Forma", // <-- Volvemos a usar "Forma"
         tallas: ["Corazón", "Cuadrado", "Circular"], // <-- Sus formas disponibles
         colores: [{ nombre: "Transparente", hex: "#e2e2e2" }],
         disenos: [
-            { nombre: "Logo Cyber Star", img: "Recursos/accesorios/diseno2.jpg" }
+            { nombre: "Logo Cyber Star", img: "Recursos/Accesorios/diseno2.jpg" }
         ]
     },
 ];  
