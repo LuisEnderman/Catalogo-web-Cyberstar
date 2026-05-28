@@ -65,7 +65,7 @@ const productos = [
         imagen: "Recursos/Accesorios/llavero-metalico-circular.png",
         personalizable: true,
         tipoEspecificacion: "Forma", // <-- Volvemos a usar "Forma"
-        tallas: ["Chapa Militar", "Rectangulo", "Circular"], // <-- Sus formas disponibles
+        tallas: ["Circular", "Rectangulo", "Chapa militar"], // <-- Sus formas disponibles
         colores: [{ nombre: "Blanco", hex: "#ffffff" },
                 { nombre: "plata", hex: "#C0C0C0" }],
         disenos: [
@@ -81,7 +81,7 @@ const productos = [
         personalizable: true,
         tipoEspecificacion: "Forma", // <-- Aquí le decimos qué palabra usar
         tallas: ["Rectangular", "Circular"], // <-- Aquí metemos las formas
-        colores: [{ nombre: "Negro", hex: "#111111" }],
+        colores: [{ nombre: "Blanco", hex: "#ffffff" }],
         disenos: [
             { nombre: "Vector Cyberpunk", img: "Recursos/Accesorios/diseno1.jpg" }
         ]
