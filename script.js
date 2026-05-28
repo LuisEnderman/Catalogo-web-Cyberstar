@@ -148,6 +148,8 @@ function abrirPersonalizacion(id) {
     colorSeleccionado = "No seleccionado";
     tallaSeleccionada = productoActual.tallas.length > 0 ? productoActual.tallas[0] : "No aplica";
 
+    
+    document.getElementById("btn-confirmar-pedido").textContent = "AÑADIR AL PEDIDO";
     document.getElementById("modal-producto-nombre").textContent = productoActual.nombre;
     document.getElementById("modal-producto-precio").textContent = `$${productoActual.precio.toFixed(2)}`;
     document.getElementById("resumen-diseno").textContent = disenoSeleccionado;
@@ -196,8 +198,10 @@ function abrirPersonalizacion(id) {
         contenedorTallas.innerHTML = html;
     }
 
-    // CAMBIO AQUÍ: El botón ahora ejecuta la función para guardar en el carrito
-    document.getElementById("btn-confirmar-pedido").textContent = "AÑADIR AL PEDIDO";
+    // El botón ahora cambia su texto Y ejecuta la función para guardar en el carrito
+    const botonConfirmar = document.getElementById("btn-confirmar-pedido");
+    botonConfirmar.textContent = "AÑADIR AL PEDIDO";
+    botonConfirmar.onclick = agregarAlCarrito; // <--- ¡Esta es la que faltaba!
 
     document.getElementById("modal-personalizar").style.display = "flex";
 }
