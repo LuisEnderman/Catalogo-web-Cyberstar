@@ -189,7 +189,7 @@ function abrirPersonalizacion(id) {
     const contenedorTallas = document.getElementById("contenedor-tallas-modal");
     contenedorTallas.innerHTML = "";
     if (productoActual.tallas.length > 0) {
-        const etiquetaEtiqueta = productoActual.tipoSpecification ? productoActual.tipoSpecification : "Talla";
+        const etiquetaEtiqueta = productoActual.tipoEspecificacion ? productoActual.tipoEspecificacion : "Talla";
         let html = `<label>Selecciona tu ${etiquetaEtiqueta}:</label><select id="talla-modal" onchange="tallaSeleccionada=this.value">`;
         productoActual.tallas.forEach(t => html += `<option value="${t}">${t}</option>`);
         html += `</select>`;
@@ -222,7 +222,7 @@ function agregarAlCarrito() {
         return;
     }
 
-    const etiquetaEtiqueta = productoActual.tipoSpecification ? productoActual.tipoSpecification : "Talla";
+    const etiquetaEtiqueta = productoActual.tipoEspecificacion ? productoActual.tipoEspecificacion : "Talla";
 
     // Creamos un nuevo objeto con las elecciones específicas del cliente
     const itemPedido = {
@@ -378,7 +378,7 @@ function generarCodigoProducto(event) {
         categoria: categoria,
         imagen: imagen,
         personalizable: true,
-        tipoSpecification: tipoEspec ? tipoEspec : undefined,
+        tipoEspecificacion: tipoEspec ? tipoEspec : undefined,
         tallas: tallasArray,
         colores: coloresPredeterminados,
         disenos: disenosArray
