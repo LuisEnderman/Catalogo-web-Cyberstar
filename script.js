@@ -141,6 +141,9 @@ function mostrarProductos(listaProductos) {
 let carrito = [];
 
 function abrirPersonalizacion(id) {
+
+    document.getElementById("panel-carrito").classList.remove("abierto");
+
     productoActual = productos.find(p => p.id === id);
     if (!productoActual) return;
 
