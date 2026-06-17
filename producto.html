@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyber Star | Detalle de Producto</title>
+
+    <link rel="icon" type="image/png" href="logo.png">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* Media Query para teléfonos y tablets */
+        @media (max-width: 768px) {
+            .contenedor-detalle-producto {
+                grid-template-columns: 1fr !important; /* Pasa a una sola columna */
+                gap: 30px !important;
+                margin: 20px auto !important;
+            }
+
+            .detalle-col-izquierda {
+                aspect-ratio: 1/1 !important; /* Hace la imagen un poco más compacta en móvil */
+            }
+
+            #detalle-nombre {
+                font-size: 1.8rem !important; /* Reduce un pelo el título para que no rompa */
+            }
+
+            /* Ajuste para el navbar en móvil */
+            header {
+                padding: 10px 5% !important;
+                flex-direction: row !important;
+                justify-content: space-between !important;
+            }
+            
+            nav a {
+                font-size: 0.9rem !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">
+            <a href="index.html" style="display: block; text-decoration: none;">
+                <img src="Recursos/logo.png" alt="Cyber Star Logo">
+            </a>
+        </div>
+        <nav>
+            <a href="index.html#catalogo">Catálogo</a>
+            <a href="#contacto">Contacto</a>
+            <button id="btn-abrir-carrito" onclick="toggleCarrito()" style="background:none; border:none; cursor:pointer; font-size:1.2rem; color:var(--color-texto); position:relative; margin-left:20px;">
+                <i class="fas fa-shopping-cart"></i>
+                <span id="contador-carrito" style="position:absolute; top:-8px; right:-10px; background:red; color:white; border-radius:50%; padding:2px 6px; font-size:0.7rem; font-weight:bold;">0</span>
+            </button>
+        </nav>
+    </header>
+
+    <main class="contenedor-detalle-producto" style="max-width: 1200px; margin: 40px auto; padding: 0 5%; display: grid; grid-template-columns: 1fr 1fr; gap: 50px;">
+        
+        <div class="detalle-col-izquierda" style="background-color: var(--color-gris-claro); padding: 20px; display: flex; align-items: center; justify-content: center; aspect-ratio: 3/4;">
+            <img id="detalle-imagen" src="" alt="" style="width: 100%; height: 100%; object-fit: contain;">
+        </div>
+
+        <div class="detalle-col-derecha" style="display: flex; flex-direction: column; gap: 25px;">
+            <a href="index.html" style="text-decoration: none; color: var(--color-gris-oscuro); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px;"><i class="fas fa-arrow-left"></i> Volver al catálogo</a>
+            
+            <h1 id="detalle-nombre" style="font-size: 2.2rem; font-weight: 700; text-transform: uppercase;">Cargando producto...</h1>
+            <p id="detalle-precio" class="precio" style="font-size: 1.8rem; color: var(--color-texto); font-weight: 700;">$0.00</p>
+            
+            <hr style="border: 0; border-top: 1px solid var(--color-gris-claro);">
+
+            <div class="modal-opcion">
+                <label style="font-size: 0.8rem; text-transform: uppercase; color: var(--color-gris-oscuro); display: block; margin-bottom: 10px;">Color disponible:</label>
+                <div id="detalle-selector-colores" class="contenedor-colores"></div>
+            </div>
+
+            <div class="modal-opcion" id="detalle-contenedor-tallas"></div>
+
+            <div id="seccion-disenos" class="modal-opcion">
+                <label style="font-size: 0.8rem; text-transform: uppercase; color: var(--color-gris-oscuro); display: block; margin-bottom: 10px;">Selecciona un Diseño para estampar:</label>
+                <div id="detalle-galeria-disenos" class="grilla-disenos"></div>
+            </div>
+
+            <!-- ⚡ ASISTENTE DE REFERENCIA INTELIGENTE PARA PRODUCTOS PERSONALIZADOS (Añadido de forma nativa) -->
+            <div id="contenedor-asistente-referencia" class="modal-opcion" style="display: none; flex-direction: column; gap: 10px; margin-bottom: 20px;">
+                <label style="font-size: 0.8rem; text-transform: uppercase; color: var(--color-gris-oscuro); display: block; font-weight: 700; letter-spacing: 1px;">¿Cómo nos enviarás tu idea?</label>
+                <div class="grupo-botones-referencia" style="display: flex; flex-direction: column; gap: 8px;">
+                    <button type="button" class="btn-opcion-ref activa-ref" data-ref="Tengo una foto de referencia de Pinterest/Instagram">
+                        📸 Tengo una foto de referencia
+                    </button>
+                    <button type="button" class="btn-opcion-ref" data-ref="Tengo mi logo o diseño listo en PNG/Vectores">
+                        👾 Tengo mi diseño listo (PNG/Vector)
+                    </button>
+                    <button type="button" class="btn-opcion-ref" data-ref="No tengo foto, necesito ayuda con la idea desde cero">
+                        💡 No tengo foto, necesito ayuda con la idea
+                    </button>
+                </div>
+            </div>
+
+            <div class="resumen-seleccion" style="background-color: var(--color-gris-claro); padding: 20px; font-size: 0.9rem; border-left: 3px solid var(--color-texto);">
+                <p style="margin-bottom: 8px;"><strong>Diseño:</strong> <span id="resumen-diseno">Ninguno seleccionado</span></p>
+                <p><strong>Color:</strong> <span id="resumen-color">Ninguno seleccionado</span></p>
+            </div>
+           
+            <button id="btn-anadir-detalle" class="btn-whatsapp" style="width: 100%; border: none; cursor: pointer; padding: 15px; font-size: 1rem;">
+                Añadir al pedido
+            </button>
+
+            <div class="info-compra-acordeon" style="margin-top: 10px; display: flex; flex-direction: column; gap: 12px;">
+                <div id="bloque-guia-tallas" style="background: var(--color-gris-claro); padding: 15px; border-radius: 4px; font-size: 0.85rem;">
+                    <strong style="text-transform: uppercase; display: block; margin-bottom: 8px; color: var(--color-texto);"><i class="fas fa-ruler-combined"></i> Guía de medidas (Aprox):</strong>
+                    <div id="contenido-medidas-tallas">Cargando medidas...</div>
+                </div>
+                <div style="background: var(--color-gris-claro); padding: 15px; border-radius: 4px; font-size: 0.85rem; line-height: 1.4;">
+                    <strong style="text-transform: uppercase; display: block; margin-bottom: 6px; color: var(--color-texto);"><i class="fas fa-truck"></i> Envíos y entregas:</strong>
+                    <span>📍 Entregas personales en Barquisimeto (Zonas céntricas / Delivery disponible).<br>📦 Envíos nacionales cobro en destino mediante MRW y Zoom.</span>
+                </div>
+                <div style="background: var(--color-gris-claro); padding: 15px; border-radius: 4px; font-size: 0.85rem; line-height: 1.4;">
+                    <strong style="text-transform: uppercase; display: block; margin-bottom: 6px; color: var(--color-texto);"><i class="fas fa-wallet"></i> Métodos de pago:</strong>
+                    <span>⚡ Pago Móvil (Tasa BCV) | Efectivo | Zelle (a partir de $25).</span>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <section class="productos-relacionados-seccion" style="max-width: 1200px; margin: 80px auto 40px auto; padding: 0 5%;">
+        <h3 style="font-size: 1.5rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 30px; position: relative; display: inline-block;">
+            Productos Relacionados
+            <span style="position: absolute; bottom: -8px; left: 0; width: 50px; height: 3px; background-color: #a855f7;"></span>
+        </h3>
+        <div id="contenedor-productos-relacionados" class="productos-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 30px;"></div>
+    </section>
+
+    <!-- SIDEBAR DE CARRITO LATERAL ACTUALIZADO -->
+    <div id="panel-carrito" class="sidebar-carrito">
+        <div class="carrito-header">
+            <h3>Tu Pedido</h3>
+            <span class="cerrar-carrito" onclick="toggleCarrito()">&times;</span>
+        </div>
+        <div id="items-carrito" class="lista-items-carrito"></div>
+        
+        <!-- FOOTER DEL CARRITO CON CUPONES INCORPORADOS -->
+        <div class="carrito-footer">
+            <div class="contenedor-cupon" style="margin-bottom: 15px; display: flex; gap: 8px;">
+                <input type="text" id="input-cupon" placeholder="CÓDIGO SECRETO" style="flex: 1; background: none; border: 1px solid rgba(17, 11, 26, 0.15); padding: 8px; font-family: var(--fuente-principal); font-size: 0.75rem; text-transform: uppercase; outline: none;">
+                <button type="button" id="btn-aplicar-cupon" style="background: var(--color-texto); color: var(--color-fondo); border: none; padding: 8px 12px; font-family: var(--fuente-principal); font-size: 0.7rem; font-weight: 700; text-transform: uppercase; cursor: pointer;">Aplicar</button>
+            </div>
+            
+            <div id="mensaje-cupon" style="font-size: 0.7rem; text-transform: uppercase; font-weight: 700; margin-bottom: 10px; display: none;"></div>
+
+            <div class="total-contenedor">
+                <span>Total estimado:</span>
+                <span id="total-carrito" class="precio">$0.00</span>
+            </div>
+            <button onclick="enviarCarritoWhatsApp()" class="btn-whatsapp" style="width:100%; border:none; cursor:pointer;">
+                <i class="fab fa-whatsapp"></i> Enviar Pedido Completo
+            </button>
+        </div>
+    </div>
+
+    <footer id="contacto">
+        <h2>CYBER STAR</h2>
+        <p>Estética urbana y sublimación personalizada.</p>
+        <div class="redes">
+            <a href="https://www.instagram.com/cyberstar.y2k?igsh=a3hoYjJmd2tlcHcy" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+            <a href="https://wa.me/584125129119" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+        </div>
+        <p class="creditos">© 2026 Cyber Star. Todos los derechos reservados.</p>
+    </footer>
+
+    <script type="module" src="js/detalle.js"></script>
+
+</body>
+</html>

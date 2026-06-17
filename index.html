@@ -46,14 +46,28 @@
         </nav>
     </header>
 
-    <!-- FILTROS DE CATEGORÍA -->
-    <section class="filtros">
-        <button class="btn-filtro activo">Todos</button>
-        <button class="btn-filtro">Streetwear</button>
-        <button class="btn-filtro">Tazas</button>
-        <button class="btn-filtro">Termos</button>
-        <button class="btn-filtro">Accesorios</button>
-    </section>
+    <!-- FILTROS POR CATEGORÍA FÍSICA (Los que ya tienes) -->
+    <div class="filtros">
+        <button class="btn-filtro activo" data-categoria="todos">Todos</button>
+        <button class="btn-filtro" data-categoria="streetwear">Streetwear</button>
+        <button class="btn-filtro" data-categoria="accesorios">Accesorios</button>
+        <!-- ...tus otros botones... -->
+    </div>
+
+    <div class="contenedor-trigger-filtros">
+        <button id="btn-toggle-filtros">
+            <i class="fas fa-sliders-h" style="font-size: 0.7rem;"></i> Filtrar
+        </button>
+    </div>
+
+    <div id="panel-micro-filtros" class="micro-filtros-colapsable">
+        <div style="display: flex; justify-content: flex-start; gap: 8px; flex-wrap: wrap; padding: 15px 0;">
+            <button class="btn-micro-filtro activo-micro" data-estilo="todos">Todo</button>
+            <button class="btn-micro-filtro" data-estilo="y2k">Y2K Retro</button>
+            <button class="btn-micro-filtro" data-estilo="cyber-grunge">Cyber-Grunge</button>
+            <button class="btn-micro-filtro" data-estilo="personalizado">Custom / Personalizables</button>
+        </div>
+    </div>
 
     <!-- GRILLA DE PRODUCTOS (El script de JS llenará este contenedor automáticamente) -->
     <main id="catalogo" class="contenedor-productos">
@@ -193,7 +207,7 @@
         </div>
     </section>
 
-    <script src="script.js"></script>
+    <script type="module" src="js/app.js"></script>
 
 </body>
 </html>
